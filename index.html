@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gray Home Decor — Premium Window Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #f5f0e8; --warm-white: #faf8f4; --charcoal: #2c2c2c;
+    --gray-mid: #6b6b6b; --gold: #b8963e; --gold-light: #d4af6a;
+    --border: #e0d8cc; --green: #2d6a4f; --red: #c0392b;
+  }
+  body { font-family: 'Jost', sans-serif; background: var(--warm-white); color: var(--charcoal); }
+
+  header { background: var(--charcoal); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 80px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+  .logo-area { display: flex; align-items: center; gap: 16px; }
+  .logo-img { height: 52px; width: 52px; object-fit: contain; border-radius: 50%; border: 2px solid var(--gold); }
+  .brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--cream); letter-spacing: .05em; line-height: 1.2; }
+  .brand-name span { display: block; font-size: .65rem; font-family: 'Jost', sans-serif; letter-spacing: .25em; color: var(--gold-light); font-weight: 300; text-transform: uppercase; }
+  .cart-btn { background: var(--gold); color: white; border: none; padding: 10px 24px; font-family: 'Jost', sans-serif; font-size: .8rem; letter-spacing: .15em; text-transform: uppercase; cursor: pointer; border-radius: 2px; display: flex; align-items: center; gap: 8px; transition: background .2s; }
+  .cart-btn:hover { background: var(--gold-light); }
+  .cart-count { background: white; color: var(--gold); border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: .75rem; font-weight: 500; }
+
+  .hero { background: var(--charcoal); color: var(--cream); text-align: center; padding: 80px 40px 60px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(184,150,62,.15) 0%, transparent 70%); }
+  .hero-eyebrow { font-size: .7rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 20px; font-weight: 300; }
+  .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 em { color: var(--gold-light); font-style: italic; }
+  .hero-sub { font-size: .9rem; color: #aaa; font-weight: 300; letter-spacing: .08em; max-width: 500px; margin: 0 auto; }
+
+  .section-label { text-align: center; padding: 60px 40px 10px; }
+  .section-label p { font-size: .65rem; letter-spacing: .4em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+  .section-label h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-top: 8px; }
+
+  .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2px; padding: 30px 40px 60px; max-width: 1300px; margin: 0 auto; }
+
+  .product-card { background: white; border: 1px solid var(--border); overflow: hidden; transition: transform .3s, box-shadow .3s; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,.12); }
+  .product-img-wrap { position: relative; overflow: hidden; height: 260px; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .product-badge { position: absolute; top: 16px; left: 16px; background: var(--charcoal); color: var(--gold-light); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; padding: 4px 10px; }
+  .product-info { padding: 22px; }
+  .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 400; margin-bottom: 4px; }
+  .product-variant-badge { display: inline-block; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-bottom: 8px; font-weight: 500; }
+  .variant-oneway { background: #e8f4f0; color: var(--green); border: 1px solid #b0d9c9; }
+  .variant-twoway { background: #fdf3e3; color: #8a5a00; border: 1px solid #e8c47a; }
+  .product-desc { font-size: .78rem; color: var(--gray-mid); line-height: 1.6; margin-bottom: 14px; font-weight: 300; }
+
+  .size-label { font-size: .68rem; color: var(--gray-mid); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 5px; }
+  .size-inputs { display: flex; gap: 8px; margin-bottom: 6px; }
+  .size-inputs input { flex: 1; border: 1px solid var(--border); padding: 8px 10px; font-family: 'Jost', sans-serif; font-size: .85rem; color: var(--charcoal); outline: none; background: var(--warm-white); border-radius: 1px; }
+  .size-inputs input:focus { border-color: var(--gold); }
+  .price-preview { font-size: .85rem; min-height: 22px; margin-bottom: 10px; font-weight: 500; }
+  .price-ok { color: var(--green); }
+  .price-err { color: var(--red); font-size: .73rem; font-weight: 400; }
+  .price-hint { color: var(--gray-mid); font-style: italic; font-size: .78rem; font-weight: 300; }
+
+  .product-price-row { display: flex; align-items: center; justify-content: flex-end; }
+  .add-btn { background: var(--charcoal); color: white; border: none; padding: 10px 18px; font-family: 'Jost', sans-serif; font-size: .73rem; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .2s; border-radius: 1px; }
+  .add-btn:hover { background: var(--gold); }
+  .add-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+  /* CART */
+  .cart-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 200; }
+  .cart-overlay.open { display: block; }
+  .cart-sidebar { position: fixed; top: 0; right: -500px; width: 480px; max-width: 100vw; height: 100vh; background: var(--warm-white); z-index: 300; display: flex; flex-direction: column; transition: right .35s cubic-bezier(.4,0,.2,1); box-shadow: -10px 0 40px rgba(0,0,0,.2); }
+  .cart-sidebar.open { right: 0; }
+  .cart-header { display: flex; align-items: center; justify-content: space-between; padding: 28px 30px; border-bottom: 1px solid var(--border); background: var(--charcoal); color: var(--cream); }
+  .cart-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 300; }
+  .close-btn { background: none; border: none; color: var(--cream); font-size: 1.5rem; cursor: pointer; padding: 4px 8px; }
+  .cart-items { flex: 1; overflow-y: auto; padding: 16px 30px; }
+  .cart-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+  .cart-item img { width: 65px; height: 65px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; margin-bottom: 2px; }
+  .cart-item-detail { font-size: .73rem; color: var(--gray-mid); margin-bottom: 3px; }
+  .cart-item-price { font-size: .9rem; font-weight: 500; color: var(--green); }
+  .remove-item { background: none; border: none; color: #ccc; cursor: pointer; font-size: 1.1rem; padding: 4px; transition: color .2s; }
+  .remove-item:hover { color: var(--red); }
+  .empty-cart { text-align: center; padding: 60px 20px; color: var(--gray-mid); }
+  .empty-cart p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; margin-bottom: 8px; }
+  .cart-footer { padding: 20px 30px; border-top: 1px solid var(--border); background: white; }
+  .cart-total { display: flex; justify-content: space-between; margin-bottom: 16px; }
+  .cart-total span:first-child { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-mid); align-self: center; }
+  .cart-total span:last-child { font-size: 1.1rem; font-weight: 600; color: var(--green); }
+  .checkout-btn { width: 100%; background: var(--gold); color: white; border: none; padding: 15px; font-family: 'Jost', sans-serif; font-size: .85rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: background .2s; border-radius: 2px; margin-bottom: 8px; }
+  .checkout-btn:hover { background: var(--charcoal); }
+  .note-text { font-size: .7rem; color: var(--gray-mid); text-align: center; line-height: 1.5; }
+
+  /* CHECKOUT MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 400; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--warm-white); max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; border-radius: 4px; animation: modalIn .3s ease; }
+  @keyframes modalIn { from { transform: scale(.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-top { background: var(--charcoal); color: var(--cream); padding: 26px 32px; display: flex; justify-content: space-between; align-items: center; }
+  .modal-top h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; }
+  .modal-body { padding: 28px 32px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 5px; }
+  .form-group input, .form-group textarea { width: 100%; border: 1px solid var(--border); padding: 10px 13px; font-family: 'Jost', sans-serif; font-size: .85rem; color: var(--charcoal); background: white; outline: none; border-radius: 1px; transition: border-color .2s; }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .order-summary { background: var(--charcoal); color: var(--cream); border-radius: 4px; padding: 18px; margin-bottom: 20px; }
+  .order-summary h4 { font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 10px; }
+  .summary-item { display: flex; justify-content: space-between; font-size: .8rem; margin-bottom: 5px; color: #ccc; gap: 10px; }
+  .summary-item span:last-child { font-weight: 600; color: #fff; white-space: nowrap; }
+  .summary-total { display: flex; justify-content: space-between; font-size: 1rem; font-weight: 600; color: var(--cream); margin-top: 10px; padding-top: 10px; border-top: 1px solid #444; }
+
+  .payment-title { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gray-mid); margin-bottom: 12px; margin-top: 20px; }
+  .payment-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+  .pay-opt { border: 2px solid var(--border); border-radius: 6px; padding: 14px 10px; text-align: center; cursor: pointer; transition: all .2s; background: white; }
+  .pay-opt:hover { border-color: var(--gold-light); }
+  .pay-opt.selected { border-color: var(--gold); background: #faf5e9; }
+  .pay-opt-icon { font-size: 1.4rem; }
+  .pay-opt-name { font-size: .78rem; font-weight: 500; margin-top: 4px; }
+
+  .info-box { display: none; border-radius: 4px; padding: 14px 16px; margin-bottom: 16px; font-size: .82rem; line-height: 1.6; }
+  .info-box.paymongo { background: #f0faf5; border: 1px solid #b0d9c9; color: #2d6a4f; }
+  .info-box.cod { background: #fdf3e3; border: 1px solid #e8c47a; color: #8a5a00; }
+  .info-box.show { display: block; }
+
+  #payErrorMsg { display: none; background: #fdecea; border: 1px solid #f5c6c2; border-radius: 4px; padding: 12px 16px; margin-bottom: 14px; font-size: .82rem; color: #c0392b; }
+
+  .place-order-btn { width: 100%; background: var(--gold); color: white; border: none; padding: 16px; font-family: 'Jost', sans-serif; font-size: .88rem; letter-spacing: .2em; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: background .2s; margin-top: 8px; }
+  .place-order-btn:hover { background: var(--charcoal); }
+  .place-order-btn:disabled { background: #aaa; cursor: not-allowed; }
+
+  /* SUCCESS */
+  .success-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.8); z-index: 500; align-items: center; justify-content: center; }
+  .success-overlay.open { display: flex; }
+  .success-box { background: var(--warm-white); max-width: 440px; width: 90%; border-radius: 4px; padding: 50px 40px; text-align: center; animation: modalIn .3s ease; }
+  .success-icon { font-size: 3rem; margin-bottom: 20px; }
+  .success-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; margin-bottom: 12px; }
+  .success-box p { font-size: .85rem; color: var(--gray-mid); line-height: 1.7; margin-bottom: 16px; }
+  .success-note { background: #f9f5e9; border: 1px solid var(--gold-light); padding: 14px 18px; border-radius: 4px; font-size: .8rem; line-height: 1.6; margin-bottom: 22px; }
+
+  footer { background: var(--charcoal); color: var(--cream); text-align: center; padding: 40px; }
+  footer h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; margin-bottom: 10px; }
+  footer p { font-size: .8rem; color: #999; line-height: 1.8; }
+  footer a { color: var(--gold-light); text-decoration: none; }
+
+  @media(max-width: 640px) {
+    header { padding: 0 18px; } .brand-name { font-size: 1.1rem; }
+    .products-grid { padding: 16px; gap: 12px; }
+    .modal-body { padding: 18px 20px; } .form-row { grid-template-columns: 1fr; }
+    .cart-sidebar { width: 100vw; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <img class="logo-img" src="images/logo.jpg" alt="Gray Home Decor">
+    <div class="brand-name">Gray Home Decor<span>& Interior Designing</span></div>
+  </div>
+  <button class="cart-btn" onclick="openCart()">🛒 Cart <div class="cart-count" id="cartCount">0</div></button>
+</header>
+
+<div class="hero">
+  <p class="hero-eyebrow">Premium Window Solutions · Philippines</p>
+  <h1>Elegance for<br><em>Every Window</em></h1>
+  <p class="hero-sub">Custom screens and blinds crafted for beauty, privacy, and lasting quality. Prices computed automatically from your dimensions.</p>
+</div>
+
+<div class="section-label">
+  <p>Our Collection</p>
+  <h2>Shop Products</h2>
+</div>
+
+<div class="products-grid" id="productsGrid"></div>
+
+<footer>
+  <h4>Gray Home Decor & Interior Designing</h4>
+  <p>📱 09166373872 &nbsp;|&nbsp; Messenger: <a href="https://m.me/grayhomedecorandinteriordesigning" target="_blank">Gray Home Decor</a><br>
+  For inquiries, feel free to message us anytime.</p>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₱0.00</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+    <p class="note-text">Price includes supply & installation. All dimensions in centimeters (cm).</p>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-top">
+      <h3>Checkout</h3>
+      <button class="close-btn" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="order-summary">
+        <h4>Order Summary</h4>
+        <div id="orderSummaryItems"></div>
+        <div class="summary-total"><span>Total</span><span id="orderTotal">₱0.00</span></div>
+      </div>
+
+      <div class="form-group"><label>Full Name</label><input type="text" id="custName" placeholder="Maria Santos"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone Number</label><input type="tel" id="custPhone" placeholder="09XXXXXXXXX"></div>
+        <div class="form-group"><label>Email (optional)</label><input type="email" id="custEmail" placeholder="email@example.com"></div>
+      </div>
+      <div class="form-group"><label>Delivery Address</label><input type="text" id="custAddress" placeholder="House No., Street, Barangay, City"></div>
+      <div class="form-group"><label>Notes (optional)</label><textarea id="custNotes" rows="2" placeholder="Color preference, special instructions..."></textarea></div>
+
+      <div class="payment-title">Select Payment Method</div>
+      <div class="payment-options">
+        <div class="pay-opt" onclick="selectPayment('gcash',this)">
+          <div class="pay-opt-icon">📱</div><div class="pay-opt-name">GCash</div>
+        </div>
+        <div class="pay-opt" onclick="selectPayment('paymaya',this)">
+          <div class="pay-opt-icon">💚</div><div class="pay-opt-name">Maya</div>
+        </div>
+        <div class="pay-opt" onclick="selectPayment('card',this)">
+          <div class="pay-opt-icon">💳</div><div class="pay-opt-name">Credit / Debit Card</div>
+        </div>
+        <div class="pay-opt" onclick="selectPayment('cod',this)">
+          <div class="pay-opt-icon">💵</div><div class="pay-opt-name">Cash on Delivery</div>
+        </div>
+      </div>
+
+      <div class="info-box paymongo" id="info-paymongo">
+        🔒 <strong>Secure Payment via PayMongo</strong><br>
+        You'll be redirected to a secure PayMongo page to complete your payment. Your order is confirmed once payment is successful.
+      </div>
+      <div class="info-box cod" id="info-cod">
+        💵 <strong>Cash on Delivery</strong><br>
+        Pay in cash when our team arrives. We will contact you to confirm and schedule delivery within our service area.<br>
+        <span style="font-size:.75rem;">📞 09166373872</span>
+      </div>
+
+      <div id="payErrorMsg"></div>
+
+      <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()">
+        <span id="btnText">Select a payment method</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- COD SUCCESS -->
+<div class="success-overlay" id="successModal">
+  <div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h3>Order Received!</h3>
+    <p>Thank you for your Cash on Delivery order! We have recorded your request and will contact you shortly to confirm and schedule.</p>
+    <div class="success-note">📞 Our team will call you to confirm.<br>You can also reach us at <strong>09166373872</strong><br>or message us on <strong>Messenger: Gray Home Decor</strong></div>
+    <button class="place-order-btn" onclick="closeSuccess()">Continue Shopping</button>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = [
+  { id:'ttb',  name:'Top to Bottom Screen',  variant:null,        desc:'Roll-down insect screen that retracts fully at the top. Ideal for large windows. Clean, modern look.', badge:null,         img:'top_to_bottom', rate:250, opening:0,    minSqft:15, maxW:200,  maxH:177.8 },
+  { id:'hc1',  name:'Honeycomb Blinds',       variant:'One Way',   desc:'Cellular honeycomb structure for superior insulation and light diffusion. Single-panel system.',        badge:'Bestseller', img:'honeycomb',     rate:390, opening:0,    minSqft:20, maxW:239,  maxH:280 },
+  { id:'hc2',  name:'Honeycomb Blinds',       variant:'Two Way',   desc:'Dual-panel honeycomb system opening from both sides. Perfect for wide openings up to 480 cm.',          badge:null,         img:'honeycomb',     rate:390, opening:3000, minSqft:20, maxW:480,  maxH:280 },
+  { id:'pl1',  name:'Pleated Screen',          variant:'One Way',   desc:'Retractable pleated insect screen with magnetic lock. Smooth glide. Ideal for openings up to 300 cm.',   badge:'Popular',    img:'pleated',       rate:350, opening:0,    minSqft:15, maxW:300,  maxH:304.8 },
+  { id:'pl2',  name:'Pleated Screen',          variant:'Two Way',   desc:'Dual-panel pleated system for wider openings up to 600 cm. Opens from center.',                          badge:null,         img:'pleated',       rate:375, opening:0,    minSqft:15, maxW:600,  maxH:304.8 },
+  { id:'ss1',  name:'Security Screen',         variant:'One Way',   desc:'Sturdy stainless steel mesh with lock. Ventilation while keeping your home safe. Single-panel.',         badge:'Heavy Duty', img:'security',      rate:750, opening:0,    minSqft:20, maxW:300,  maxH:304.8 },
+  { id:'ss2',  name:'Security Screen',         variant:'Two Way',   desc:'Heavy-duty dual-panel security screen for wide openings up to 600 cm. Maximum protection.',              badge:null,         img:'security',      rate:780, opening:3000, minSqft:20, maxW:600,  maxH:304.8 },
+];
+
+const IMG_PATHS = { top_to_bottom:'images/top_to_bottom.jpg', honeycomb:'images/honeycomb.jpg', pleated:'images/pleated.jpg', security:'images/security.jpg' };
+
+let cart = [];
+
+function cmToSqft(w, h) { return (w / 30.48) * (h / 30.48); }
+function fmt(n) { return '₱' + n.toLocaleString('en-PH', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function computePrice(prod, w, h) {
+  if (!w || !h || w <= 0 || h <= 0) return null;
+  if (w > prod.maxW) return { err: `Width exceeds max ${prod.maxW} cm for this model` };
+  if (h > prod.maxH) return { err: `Height exceeds max ${prod.maxH.toFixed(0)} cm for this model` };
+  const sqft = cmToSqft(w, h);
+  const usedSqft = Math.max(sqft, prod.minSqft);
+  const amt = usedSqft * prod.rate + prod.opening;
+  return { price: amt, minApplied: sqft < prod.minSqft };
+}
+
+function buildProducts() {
+  const grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map(prod => {
+    const varClass = prod.variant === 'One Way' ? 'variant-oneway' : prod.variant === 'Two Way' ? 'variant-twoway' : '';
+    const varBadge = prod.variant ? `<div class="product-variant-badge ${varClass}">${prod.variant}</div>` : '';
+    const badgeHtml = prod.badge ? `<div class="product-badge">${prod.badge}</div>` : '';
+    return `
+    <div class="product-card">
+      <div class="product-img-wrap">
+        <img src="${IMG_PATHS[prod.img]}" alt="${prod.name}" loading="lazy">
+        ${badgeHtml}
+      </div>
+      <div class="product-info">
+        <div class="product-name">${prod.name}</div>
+        ${varBadge}
+        <div class="product-desc">${prod.desc}</div>
+        <div class="size-label">Enter dimensions (cm) — Width × Height</div>
+        <div class="size-inputs">
+          <input type="number" id="w-${prod.id}" placeholder="Width (cm)" min="1" step="0.1" oninput="updatePrice('${prod.id}')">
+          <input type="number" id="h-${prod.id}" placeholder="Height (cm)" min="1" step="0.1" oninput="updatePrice('${prod.id}')">
+        </div>
+        <div class="price-preview" id="pp-${prod.id}"><span class="price-hint">Enter dimensions to see price</span></div>
+        <div class="product-price-row">
+          <button class="add-btn" id="btn-${prod.id}" onclick="addToCart('${prod.id}')" disabled>Add to Cart</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updatePrice(id) {
+  const prod = PRODUCTS.find(p => p.id === id);
+  const w = parseFloat(document.getElementById('w-'+id).value);
+  const h = parseFloat(document.getElementById('h-'+id).value);
+  const pp = document.getElementById('pp-'+id);
+  const btn = document.getElementById('btn-'+id);
+  if (!w && !h) { pp.innerHTML = '<span class="price-hint">Enter dimensions to see price</span>'; btn.disabled = true; return; }
+  const result = computePrice(prod, w, h);
+  if (!result) { pp.innerHTML = '<span class="price-hint">Enter both dimensions</span>'; btn.disabled = true; }
+  else if (result.err) { pp.innerHTML = `<span class="price-err">⚠ ${result.err}</span>`; btn.disabled = true; }
+  else { pp.innerHTML = `<span class="price-ok">${fmt(result.price)}</span>`; btn.disabled = false; }
+}
+
+function addToCart(id) {
+  const prod = PRODUCTS.find(p => p.id === id);
+  const w = parseFloat(document.getElementById('w-'+id).value);
+  const h = parseFloat(document.getElementById('h-'+id).value);
+  const result = computePrice(prod, w, h);
+  if (!result || result.err) return;
+  cart.push({ cartId: Date.now(), prodId: id, name: prod.name + (prod.variant ? ' — ' + prod.variant : ''), img: prod.img, w, h, price: result.price, detail: `${w} × ${h} cm` });
+  document.getElementById('w-'+id).value = '';
+  document.getElementById('h-'+id).value = '';
+  updatePrice(id);
+  renderCart();
+  openCart();
+}
+
+function removeFromCart(cartId) { cart = cart.filter(i => i.cartId !== cartId); renderCart(); }
+
+function renderCart() {
+  document.getElementById('cartCount').textContent = cart.length;
+  const el = document.getElementById('cartItems');
+  if (!cart.length) { el.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p><small>Add products to get started</small></div>'; document.getElementById('cartTotal').textContent = '₱0.00'; return; }
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  el.innerHTML = cart.map(item => `
+    <div class="cart-item">
+      <img src="${IMG_PATHS[item.img]}" alt="${item.name}">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-detail">${item.detail}</div>
+        <div class="cart-item-price">${fmt(item.price)}</div>
+      </div>
+      <button class="remove-item" onclick="removeFromCart(${item.cartId})">✕</button>
+    </div>`).join('');
+  document.getElementById('cartTotal').textContent = fmt(total);
+}
+
+function openCart() { document.getElementById('cartOverlay').classList.add('open'); document.getElementById('cartSidebar').classList.add('open'); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); document.getElementById('cartSidebar').classList.remove('open'); }
+
+let selectedPayment = '';
+function selectPayment(method, el) {
+  selectedPayment = method;
+  document.querySelectorAll('.pay-opt').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('info-paymongo').classList.toggle('show', ['gcash','paymaya','card'].includes(method));
+  document.getElementById('info-cod').classList.toggle('show', method === 'cod');
+  document.getElementById('payErrorMsg').style.display = 'none';
+  document.getElementById('btnText').textContent = method === 'cod' ? 'Place Order (COD)' : 'Pay Now →';
+  document.getElementById('placeOrderBtn').disabled = false;
+}
+
+function openCheckout() {
+  if (!cart.length) { alert('Your cart is empty!'); return; }
+  closeCart();
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  document.getElementById('orderSummaryItems').innerHTML = cart.map(i =>
+    `<div class="summary-item"><span>${i.name}<br><small style="font-size:.68rem;opacity:.7">${i.detail}</small></span><span>${fmt(i.price)}</span></div>`).join('');
+  document.getElementById('orderTotal').textContent = fmt(total);
+  document.getElementById('checkoutModal').classList.add('open');
+}
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('open'); }
+
+function showError(msg) {
+  const el = document.getElementById('payErrorMsg');
+  el.textContent = '⚠ ' + msg;
+  el.style.display = 'block';
+}
+
+async function placeOrder() {
+  const name = document.getElementById('custName').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const address = document.getElementById('custAddress').value.trim();
+  const notes = document.getElementById('custNotes').value.trim();
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!phone) { alert('Please enter your phone number.'); return; }
+  if (!address) { alert('Please enter your delivery address.'); return; }
+  if (!selectedPayment) { alert('Please select a payment method.'); return; }
+  document.getElementById('payErrorMsg').style.display = 'none';
+
+  if (selectedPayment === 'cod') {
+    closeCheckout();
+    document.getElementById('successModal').classList.add('open');
+    cart = []; renderCart(); selectedPayment = '';
+    document.querySelectorAll('.pay-opt').forEach(e => e.classList.remove('selected'));
+    document.getElementById('info-paymongo').classList.remove('show');
+    document.getElementById('info-cod').classList.remove('show');
+    document.getElementById('btnText').textContent = 'Select a payment method';
+    return;
+  }
+
+  const btn = document.getElementById('placeOrderBtn');
+  btn.disabled = true;
+  document.getElementById('btnText').textContent = 'Creating secure payment link...';
+
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  const amountCentavos = Math.round(total * 100);
+  const desc = cart.map(i => `${i.name} (${i.detail})`).join('; ');
+  const orderDesc = (`Gray Home Decor — ${desc} | ${name} | ${address}${notes ? ' | ' + notes : ''}`).substring(0, 255);
+
+  try {
+    const resp = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        amount: amountCentavos,
+        description: orderDesc,
+        remarks: `${name} | ${phone}`,
+      })
+    });
+
+    const data = await resp.json();
+    if (!resp.ok) {
+      const errMsg = data?.error || 'Payment link creation failed. Please try again.';
+      showError(errMsg);
+      btn.disabled = false;
+      document.getElementById('btnText').textContent = 'Pay Now →';
+      return;
+    }
+    const checkoutUrl = data?.checkout_url;
+    if (checkoutUrl) {
+      cart = []; renderCart();
+      window.location.href = checkoutUrl;
+    } else {
+      showError('Could not get payment URL. Please try again.');
+      btn.disabled = false;
+      document.getElementById('btnText').textContent = 'Pay Now →';
+    }
+  } catch(err) {
+    showError('Network error. Please check your connection and try again.');
+    btn.disabled = false;
+    document.getElementById('btnText').textContent = 'Pay Now →';
+  }
+}
+
+function closeSuccess() {
+  document.getElementById('successModal').classList.remove('open');
+  ['custName','custPhone','custEmail','custAddress','custNotes'].forEach(id => document.getElementById(id).value='');
+}
+
+buildProducts();
+renderCart();
+</script>
+</body>
+</html>
