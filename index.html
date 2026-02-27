@@ -155,7 +155,7 @@
 
 <header>
   <div class="logo-area">
-    <img class="logo-img" src="images/logo.jpg" alt="Gray Home Decor">
+    <img class="logo-img" src="logo.jpg" alt="Gray Home Decor">
     <div class="brand-name">Gray Home Decor<span>& Interior Designing</span></div>
   </div>
   <button class="cart-btn" onclick="openCart()">🛒 Cart <div class="cart-count" id="cartCount">0</div></button>
@@ -277,7 +277,7 @@ const PRODUCTS = [
   { id:'ss2',  name:'Security Screen',         variant:'Two Way',   desc:'Heavy-duty dual-panel security screen for wide openings up to 600 cm. Maximum protection.',              badge:null,         img:'security',      rate:780, opening:3000, minSqft:20, maxW:600,  maxH:304.8 },
 ];
 
-const IMG_PATHS = { top_to_bottom:'images/top_to_bottom.jpg', honeycomb:'images/honeycomb.jpg', pleated:'images/pleated.jpg', security:'images/security.jpg' };
+const IMG_PATHS = { top_to_bottom:'top_to_bottom.jpg', honeycomb:'honeycomb.jpg', pleated:'pleated.jpg', security:'security.jpg' };
 
 let cart = [];
 
@@ -435,7 +435,7 @@ async function placeOrder() {
   const orderDesc = (`Gray Home Decor — ${desc} | ${name} | ${address}${notes ? ' | ' + notes : ''}`).substring(0, 255);
 
   try {
-    const resp = await fetch('/.netlify/functions/create-payment', {
+    const resp = await fetch('/create-payment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
